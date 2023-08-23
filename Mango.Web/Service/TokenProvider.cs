@@ -1,4 +1,6 @@
 ﻿using Mango.Web.Service.IService;
+using Mango.Web.Utility;
+using Newtonsoft.Json.Linq;
 
 namespace Mango.Web.Service
 {
@@ -7,24 +9,26 @@ namespace Mango.Web.Service
         private readonly IHttpContextAccessor _contextAccessor;
         public TokenProvider(IHttpContextAccessor contextAccessor)
         {
-
             _contextAccessor = contextAccessor;
-
         }
 
         public void ClearToken()
         {
-            throw new NotImplementedException();
+            _contextAccessor.HttpContext?.Response.Cookies.Delete(SD.TokenCookie);
         }
 
         public string? GetToken()
         {
-            throw new NotImplementedException();
+            string? token = null;
+
+            bool? hasToken = _contextAccessor.HttpContext?.Request.Cookies.TryGetValue(SD.TokenCookie, out token);
+
+            return hasToken is true ? token : null;
         }
 
         public void SetToken(string token)
         {
-            throw new NotImplementedException();
+            _contextAccessor.HttpContext?.Response.Cookies.Append(SD.TokenCookie, token);
         }
     }
 }

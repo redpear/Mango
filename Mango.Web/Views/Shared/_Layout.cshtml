@@ -35,10 +35,15 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" asp-controller="Coupon" asp-action="CouponIndex">Coupon</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" asp-controller="Product" asp-action="ProductIndex">Product</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Cart" asp-action="CartIndex">
+                             &nbsp;<i class="bi bi-cart"></i> &nbsp;
+                            </a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
@@ -53,6 +58,9 @@
                         }
                         else
                         {
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" >Hello, @User.Identity.Name</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Auth" asp-action="Logout">Logout</a>
                             </li>
