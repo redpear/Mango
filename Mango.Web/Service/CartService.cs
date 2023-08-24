@@ -4,6 +4,7 @@ using Mango.Web.Utility;
 using static Mango.Web.Utility.SD;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Mango.Web.Service
 {
@@ -24,6 +25,18 @@ namespace Mango.Web.Service
                 ApiType = SD.ApiType.POST,
                 Data = cartDto,
                 Url = SD.ShoppingCartAPIBase + "/api/cart/ApplyCoupon"
+
+            });
+        }
+
+        [HttpPost]
+        public async Task<ResponseDto?> EmailCart(CartDto cartDto)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.POST,
+                Data = cartDto,
+                Url = SD.ShoppingCartAPIBase + "/api/cart/EmailCartRequest"
 
             });
         }
