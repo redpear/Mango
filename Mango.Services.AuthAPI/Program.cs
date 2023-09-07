@@ -1,3 +1,4 @@
+using Mango.MessageBus;
 using Mango.Services.AuthAPI.Data;
 using Mango.Services.AuthAPI.Models;
 using Mango.Services.AuthAPI.Service;
@@ -26,6 +27,8 @@ builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSett
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+builder.Services.AddScoped<IMessageBus,  MessageBus>();
+
 
 var app = builder.Build();
 
